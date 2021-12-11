@@ -285,3 +285,17 @@ int is_tree_perfect(T_Tree tree) {
 
     return size == pow(2, height+1) - 1;
 }
+
+int is_equilibrate(T_Tree tree) {
+
+    if(tree == NULL)
+        return -1;
+
+    int h1 = tree_height(tree->leftChild);
+    int h2 = tree_height(tree->rightChild);
+
+    if(abs(h1 - h2) > 1) 
+        return 0;
+
+    return is_equilibrate(tree->leftChild) && is_equilibrate(tree->rightChild);
+}
