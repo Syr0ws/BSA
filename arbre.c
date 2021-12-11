@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <math.h>
 #include "arbre.h"
 
 // General utils functions
@@ -43,6 +44,10 @@ char* dynstrcpy(char* str) {
     return copy;
 }
 
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
 // Binary search trees related utils functions
 
 T_Node* find_node(T_Tree tree, char* word) {
@@ -73,6 +78,33 @@ T_Node* find_desc_successor(T_Node* node) {
     while(current && current->leftChild) current = current->leftChild;
 
     return current;
+}
+
+int tree_height(T_Tree tree) {
+
+    if(tree == NULL) 
+        return -1;
+
+    if(tree->leftChild == NULL && tree->rightChild == NULL) 
+        return 0;
+
+    return 1 + max(tree_height(tree->leftChild), tree_height(tree->rightChild));
+}
+
+unsigned int tree_size(T_Tree tree) {
+
+    unsigned int nodes = 0;
+
+    if(tree != NULL)
+        nodes += 1;
+
+    if(tree->leftChild)
+        nodes += tree_size(tree->leftChild);
+
+    if(tree->rightChild)
+        nodes += tree_size(tree->rightChild);
+
+    return nodes;
 }
 
 void destruct_node(T_Node* node) {
@@ -244,4 +276,12 @@ void display_tree(T_Tree tree, char current) {
 
     if(tree->rightChild)
         display_tree(tree->rightChild, tree->word[0]);
+}
+
+int is_tree_perfect(T_Tree tree) {
+
+    int height = tree_height(tree);
+    int size = tree_size(tree);
+
+    return size == pow(2, height+1) - 1;
 }

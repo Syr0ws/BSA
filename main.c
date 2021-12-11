@@ -14,12 +14,14 @@ int main() {
     tree = add_node(tree, "recherche");
     tree = add_node(tree, "test");
     tree = add_node(tree, "plein");
-    tree = add_node(tree, "arbre");
+    // tree = add_node(tree, "arbre");
     tree = add_node(tree, "binaire");
     tree = add_node(tree, "plein");
-    tree = add_node(tree, "occurrence");
+    // tree = add_node(tree, "occurrence");
 
     // display_tree(tree, '\0');
+
+    printf("%d\n", is_tree_perfect(tree));
 
     tree = remove_occurrence(tree, "occurrence", 2);
     tree = remove_occurrence(tree, "plein", 2);
