@@ -163,7 +163,7 @@ T_Tree remove_occurrence(T_Tree tree, char* word, int n) {
     if(tree == NULL) 
         return NULL;
 
-    cmp = strcmp(tree->word, word);
+    cmp = strcasecmp(tree->word, word);
 
     // Mot plus petit -> suppression dans sous-arbre gauche. 
     if(cmp == 1) {
