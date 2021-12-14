@@ -118,6 +118,8 @@ void display_treelist_ids(TreeList* list) {
         return;
     }
 
+    node = list->head;
+
     printf("Affichage du contenu de la TreeList :\n");
 
     while(node != NULL) {
