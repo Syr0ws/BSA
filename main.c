@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "arbre.h"
+#include "lexicon.h"
 #include "tree-list.h"
 #include "utils.h"
 
