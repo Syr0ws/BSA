@@ -278,7 +278,7 @@ void display_tree(T_Tree tree, char current) {
         display_tree(tree->rightChild, tree->word[0]);
 }
 
-int is_tree_perfect(T_Tree tree) {
+int is_perfect(T_Tree tree) {
 
     int height = tree_height(tree);
     int size = tree_size(tree);

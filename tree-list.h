@@ -3,30 +3,30 @@
 
 #include "arbre.h"
 
-typedef struct TL_Node {
+typedef struct TreeListNode {
     
     char* id;
     T_Tree tree;
-    struct TL_Node* next;
+    struct TreeListNode* next;
 
-} TL_Node;
+} TreeListNode;
 
-typedef struct T_List {
+typedef struct TreeList {
 
-    TL_Node* head;
+    TreeListNode* head;
 
-} T_List;
+} TreeList;
 
-T_List* create_tree_list();
+TreeList* create_treelist();
 
-int insert_tree_begining(T_List* list, T_Tree tree, char* id);
+TreeListNode* insert_treelist_begining(TreeList* list, T_Tree tree, char* id);
 
-int insert_tree(T_List* list, T_Tree tree, char* id);
+int remove_from_treelist(TreeList* list, char* id);
 
-int remove_tree(T_List* list, char* id);
+TreeListNode* get_treelist_node(TreeList* list, char* id);
 
-TL_Node* get_tl_node(T_List* list, char* id);
+void display_treelist_ids(TreeList* list);
 
-int destroy_tree_list(T_List* list);
+int destroy_treelist(TreeList* list);
 
 #endif

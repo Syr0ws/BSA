@@ -23,7 +23,7 @@ T_Tree remove_occurrence(T_Tree tree, char* word, int n);
 
 void display_tree(T_Tree tree, char first);
 
-int is_tree_perfect(T_Tree tree);
+int is_perfect(T_Tree tree);
 
 int is_equilibrate(T_Tree tree);
 

@@ -4,9 +4,9 @@
 
 #include "tree-list.h"
 
-T_List* create_tree_list() {
+TreeList* create_treelist() {
 
-    T_List* list = (T_List*) malloc(sizeof(T_List));
+    TreeList* list = (TreeList*) malloc(sizeof(TreeList));
 
     if(list == NULL)
         return NULL;
@@ -16,42 +16,30 @@ T_List* create_tree_list() {
     return list;
 }
 
-int insert_tree_begining(T_List* list, T_Tree tree, char* id) {
+TreeListNode* insert_treelist_begining(TreeList* list, T_Tree tree, char* id) {
 
-    TL_Node* node = NULL;
+    TreeListNode* node = NULL;
 
     if(list == NULL || id == NULL)
-        return -1;
+        return NULL;
 
-    node = (TL_Node*) malloc(sizeof(TL_Node));
+    node = (TreeListNode*) malloc(sizeof(TreeListNode));
 
     if(node == NULL)
-        return -1;
+        return NULL;
 
     node->id = id;
     node->tree = tree;
     node->next = list->head;
     list->head = node;
 
-    return 1;
+    return node;
 }
 
-int insert_tree(T_List* list, T_Tree tree, char* id) {
+int remove_from_treelist(TreeList* list, char* id) {
 
-    TL_Node* node = get_tl_node(list, id);
-
-    if(node == NULL) 
-        return insert_tree_begining(list, tree, id);
-
-    node->tree = tree;
-
-    return 1;
-}
-
-int remove_tree(T_List* list, char* id) {
-
-    TL_Node* node = NULL;
-    TL_Node* previous = NULL;
+    TreeListNode* node = NULL;
+    TreeListNode* previous = NULL;
     int cmp = 0;
 
     if(list == NULL || id == NULL)
@@ -79,9 +67,9 @@ int remove_tree(T_List* list, char* id) {
     return 1;
 }
 
-TL_Node* get_tl_node(T_List* list, char* id) {
+TreeListNode* get_treelist_node(TreeList* list, char* id) {
 
-    TL_Node* node = NULL;
+    TreeListNode* node = NULL;
     int cmp = 0;
 
     if(list == NULL || id == NULL)
@@ -90,16 +78,15 @@ TL_Node* get_tl_node(T_List* list, char* id) {
     node = list->head;
 
     while(node != NULL && (cmp = strcmp(id, node->id)) != 0) {
-        printf("%d\n", cmp);
         node = node->next;
     }
     return node;
 }
 
-int destroy_tree_list(T_List* list) {
+int destroy_treelist(TreeList* list) {
 
-    TL_Node* node = NULL;
-    TL_Node* temp = NULL;
+    TreeListNode* node = NULL;
+    TreeListNode* temp = NULL;
 
     if(list == NULL)
         return -1;
@@ -115,4 +102,26 @@ int destroy_tree_list(T_List* list) {
     }
     free(list);
     return 1;
+}
+
+void display_treelist_ids(TreeList* list) {
+
+    TreeListNode* node = NULL;
+
+    if(list == NULL) {
+        printf("TreeList invalide.\n");
+        return;
+    }
+
+    if(list->head == NULL) {
+        printf("TreeList vide.\n");
+        return;
+    }
+
+    printf("Affichage du contenu de la TreeList :\n");
+
+    while(node != NULL) {
+        printf("- %s\n", node->id);
+        node = node->next;
+    }
 }
