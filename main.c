@@ -323,13 +323,12 @@ void do_remove_occurrence(T_Tree tree) {
 
         new = remove_occurrence(tree, word, 1);
 
-        if(new != NULL) {
+        printf("Le mot '%s' a ete supprime de l'arbre.\n", word);
 
-            printf("Le mot '%s' a ete supprime de l'arbre.\n", word);
+        if(new != GLOBAL_NODE->tree) 
             GLOBAL_NODE->tree = new;
-            free(word);
 
-        } else show_internal_error();
+        free(word);
 
     } else show_internal_error();
 }
