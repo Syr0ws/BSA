@@ -14,38 +14,18 @@ void display_menu();
 
 int main() {
 
-    T_Tree tree = NULL;
-
-    tree = add_node(tree, "occurrence");
-    tree = add_node(tree, "binaire");
-    tree = add_node(tree, "binary");
-    tree = add_node(tree, "recherche");
-    tree = add_node(tree, "test");
-    tree = add_node(tree, "plein");
-    tree = add_node(tree, "arbre");
-    tree = add_node(tree, "binaire");
-    tree = add_node(tree, "plein");
-    tree = add_node(tree, "occurrence");
-
-    display_tree(tree, '\0');
-
-    char c;
+    char choice;
 
     do {
 
         display_menu();
 
-        c = getchar();
+        choice = getchar();
         clear_input();
 
-        compute_input(c);
+        compute_input(choice);
 
-        Lexicon* lexicon = get_lexicon(tree);
-        display_lexicon(lexicon);
-
-        printf("%f\n", jaccard_index(lexicon, lexicon));
-
-    } while (c != '9');
+    } while (choice != '9');
     
     return 0;
 }
@@ -88,4 +68,36 @@ void display_menu() {
 
 void compute_input(char choice) {
 
+    switch (choice) {
+    case '1':
+        printf("Choix 1 : Creer un nouvel arbre.\n");
+        break;
+    case '2':
+        printf("Choix 2 : Afficher un arbre.\n");
+        break;
+    case '3':
+        printf("Choix 3 : Ajouter un mot dans un arbre.\n");
+        break;
+    case '4':
+        printf("Choix 4 : Retirer un mot d'un arbre.\n");
+        break;
+    case '5':
+        printf("Choix 5 : Verifier si un arbre est parfait.\n");
+        break;
+    case '6':
+        printf("Choix 6 : Verifier si un arbre est equilibre.\n");
+        break;
+    case '7':
+        printf("Choix 7 : Transformer un arbre en un lexique et l'afficher.\n");
+        break;
+    case '8':
+        printf("Choix 8 : Tester la similarite de deux textes.\n");
+        break;
+    case '9':
+        printf("A bientot !\n");
+        break;
+    default:
+        printf("Erreur : Choix invalide. Veuillez reessayer.\n");
+        break;
+    }
 }
