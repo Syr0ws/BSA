@@ -16,7 +16,7 @@ T_List* create_tree_list() {
     return list;
 }
 
-int insert_tree(T_List* list, T_Tree tree, char* id) {
+int insert_tree_begining(T_List* list, T_Tree tree, char* id) {
 
     TL_Node* node = NULL;
 
@@ -32,6 +32,18 @@ int insert_tree(T_List* list, T_Tree tree, char* id) {
     node->tree = tree;
     node->next = list->head;
     list->head = node;
+
+    return 1;
+}
+
+int insert_tree(T_List* list, T_Tree tree, char* id) {
+
+    TL_Node* node = get_tl_node(list, id);
+
+    if(node == NULL) 
+        return insert_tree_begining(list, tree, id);
+
+    node->tree = tree;
 
     return 1;
 }

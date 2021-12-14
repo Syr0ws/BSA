@@ -19,6 +19,8 @@ typedef struct T_List {
 
 T_List* create_tree_list();
 
+int insert_tree_begining(T_List* list, T_Tree tree, char* id);
+
 int insert_tree(T_List* list, T_Tree tree, char* id);
 
 int remove_tree(T_List* list, char* id);
