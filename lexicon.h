@@ -16,7 +16,7 @@ typedef struct Lexicon {
 
 Lexicon* create_lexicon();
 
-int insert_begining(Lexicon* lexicon, char* word);
+int insert_begining_lexicon(Lexicon* lexicon, char* word);
 
 int destruct_lexicon(Lexicon* lexicon);
 

@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lexicon.h"
 
-L_Node* create_node(char* word) {
+L_Node* create_lexicon_node(char* word) {
 
     L_Node* node = (L_Node*) malloc(sizeof(L_Node));
 
@@ -10,7 +11,7 @@ L_Node* create_node(char* word) {
         return NULL;
 
     node->word = word;
-    node->next = 0;
+    node->next = NULL;
 
     return node;
 }
@@ -22,19 +23,19 @@ Lexicon* create_lexicon() {
     if(lexicon == NULL)
         return NULL;
 
-    lexicon->head = 0;
+    lexicon->head = NULL;
 
     return lexicon;
 }
 
-int insert_begining(Lexicon* lexicon, char* word) {
+int insert_begining_lexicon(Lexicon* lexicon, char* word) {
 
     L_Node* node = NULL;
 
     if(lexicon == NULL || word == NULL)
         return -1;
 
-    node = create_node(word);
+    node = create_lexicon_node(word);
 
     if(node == NULL)
         return -1;
@@ -147,5 +148,10 @@ float jaccard_index(Lexicon* lexicon1, Lexicon* lexicon2) {
         }
         unionIndex += 1;
     }
-    return (float) unionIndex / (float) intersectIndex;
+    
+    // Prevent division by 0.
+    if(unionIndex == 0 || intersectIndex == 0) 
+        return 0;
+
+    return (float) intersectIndex / unionIndex;
 }

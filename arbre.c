@@ -299,3 +299,31 @@ int is_equilibrate(T_Tree tree) {
 
     return is_equilibrate(tree->leftChild) && is_equilibrate(tree->rightChild);
 }
+
+void fill_lexicon(T_Tree tree, Lexicon* lexicon) {
+
+    if(tree->rightChild)
+        fill_lexicon(tree->rightChild, lexicon);
+
+    insert_begining_lexicon(lexicon, tree->word);
+
+    if(tree->leftChild) 
+        fill_lexicon(tree->leftChild, lexicon);
+}
+
+Lexicon* get_lexicon(T_Tree tree) {
+
+    Lexicon* lexicon = NULL;
+
+    if(tree == NULL)
+        return NULL;
+        
+    lexicon = create_lexicon();
+
+    if(lexicon == NULL)
+        return NULL;
+
+    fill_lexicon(tree, lexicon);
+
+    return lexicon;
+}

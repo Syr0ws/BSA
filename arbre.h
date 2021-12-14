@@ -1,6 +1,8 @@
 #ifndef _T_TREE_
 #define _T_TREE_
 
+#include "lexicon.h"
+
 typedef struct Node {
 
     char* word;
@@ -24,5 +26,7 @@ void display_tree(T_Tree tree, char first);
 int is_tree_perfect(T_Tree tree);
 
 int is_equilibrate(T_Tree tree);
+
+Lexicon* get_lexicon(T_Tree tree);
 
 #endif

@@ -40,6 +40,11 @@ int main() {
 
         compute_input(c);
 
+        Lexicon* lexicon = get_lexicon(tree);
+        display_lexicon(lexicon);
+
+        printf("%f\n", jaccard_index(lexicon, lexicon));
+
     } while (c != '9');
     
     return 0;
