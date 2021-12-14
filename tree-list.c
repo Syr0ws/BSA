@@ -58,7 +58,7 @@ int remove_from_treelist(TreeList* list, char* id) {
     if(node == NULL)
         return 0;
 
-    if(previous == NULL) list->head = NULL;
+    if(previous == NULL) list->head = node->next;
     else previous->next = node->next;
 
     free(node->id);
