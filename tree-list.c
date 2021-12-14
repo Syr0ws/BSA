@@ -67,7 +67,7 @@ int remove_tree(T_List* list, char* id) {
     return 1;
 }
 
-T_Tree get_tree(T_List* list, char* id) {
+TL_Node* get_tl_node(T_List* list, char* id) {
 
     TL_Node* node = NULL;
     int cmp = 0;
@@ -78,10 +78,10 @@ T_Tree get_tree(T_List* list, char* id) {
     node = list->head;
 
     while(node != NULL && (cmp = strcmp(id, node->id)) != 0) {
+        printf("%d\n", cmp);
         node = node->next;
     }
-
-    return node == NULL ? NULL : node->tree;
+    return node;
 }
 
 int destroy_tree_list(T_List* list) {

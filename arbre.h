@@ -17,7 +17,7 @@ typedef T_Node* T_Tree;
 
 T_Tree create_node(char* word);
 
-T_Tree add_node(T_Tree tree, char* word);
+T_Tree add_occurrence(T_Tree tree, char* word);
 
 T_Tree remove_occurrence(T_Tree tree, char* word, int n);
 

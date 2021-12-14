@@ -135,7 +135,7 @@ T_Node* create_node(char* word) {
     return node;
 }
 
-T_Tree add_node(T_Tree tree, char* word) {
+T_Tree add_occurrence(T_Tree tree, char* word) {
 
     T_Node* node = 0;
     T_Node* current = tree;
