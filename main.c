@@ -145,7 +145,7 @@ void do_create_tree() {
 
     if(id == NULL) return;
 
-    result = insert_tree(list, NULL, id);
+    result = insert_tree_begining(list, NULL, id);
     
     if(result == 1) 
         printf("Un arbre portant l'identifiant %s a ete cree.", id);
@@ -177,7 +177,7 @@ void do_display_tree() {
 void do_add_word() {
 
     TL_Node* node = NULL;
-    T_Tree tree = NULL;
+    T_Tree old = NULL, new = NULL;
 
     char* word = NULL;
     char* id = NULL;
@@ -198,15 +198,17 @@ void do_add_word() {
 
     if(word != NULL) {
 
-        tree = add_node(node->tree, word);
+        new = add_occurrence(node->tree, word);
 
-        if(tree != NULL) {
-
-            // result = replace_tree(list, tree, id);
-            printf("Le mot '%s' a ete insere dans l'arbre '%s'.\n", word, id);
-
-        } else printf("Erreur : L'insertion du mot '%s' dans l'arbre '%s' a echoue.\n", word, id);
+        if(new != NULL && new != old) result = insert_tree(list, new, id);
     }
+
+    if(result == 1) {
+
+        printf("Le mot '%s' a ete insere dans l'arbre '%s'.\n", word, id);
+        display_tree(new, '\0');
+
+    } else printf("Erreur : L'insertion du mot '%s' dans l'arbre '%s' a echoue.\n", word, id);
 
     free(id);
     free(word);
