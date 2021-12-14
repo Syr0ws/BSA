@@ -35,6 +35,8 @@ void mdo_remove_tree();
 
 void mdo_display_tree();
 
+void mdo_jaccard_index();
+
 void do_add_occurrence(T_Tree tree);
 
 void do_remove_occurrence(T_Tree tree);
@@ -48,6 +50,8 @@ void do_display_lexicon(T_Tree tree);
 char* do_input_string(char* message, size_t size);
 
 char* do_input_id();
+
+TreeListNode* do_input_node();
 
 // Implementation.
 
@@ -155,6 +159,7 @@ void compute_main_menu_choice(char choice) {
         break;
     case '6':
         printf("Choix %c : Tester la similarite de deux textes.\n", choice);
+        mdo_jaccard_index();
         break;
     case '7':
         printf("A bientot !\n");
@@ -203,24 +208,11 @@ void show_internal_error() {
 
 void mdo_select_tree() {
 
-    char* id = NULL;
-    int result = -1;
+    TreeListNode* node = do_input_node();
 
-    id = do_input_id();
-
-    if(id == NULL) return;
-
-    GLOBAL_NODE = get_treelist_node(GLOBAL_LIST, id);
-
-    if(GLOBAL_NODE != NULL) {
-
-        free(id); // Liberation mémoire.
+    if(node != NULL) {
+        GLOBAL_NODE = node;
         open_tree_menu();
-
-    } else {
-
-        printf("Aucun arbre ayant l'identifiant '%s' n'a ete trouve.\n", id);
-        free(id);
     }
 }
 
@@ -272,26 +264,40 @@ void mdo_remove_tree() {
 void mdo_display_tree() {
 
     TreeListNode* node = NULL;
-    char* id = NULL;
-    int result = -1;
+    node = do_input_node();
 
-    id = do_input_id();
+    if(node != NULL) display_tree(node->tree, '\0');
+}
 
-    // Erreur sur la saisie de l'identifiant.
-    if(id == NULL) return;
+void mdo_jaccard_index() {
 
-    node = get_treelist_node(GLOBAL_LIST, id);
+    TreeListNode* n1 = NULL;
+    TreeListNode* n2 = NULL;
 
-    if(node != NULL) {
+    Lexicon* l1 = NULL;
+    Lexicon* l2 = NULL;
 
-        free(id); // Liberation mémoire.
-        display_tree(node->tree, '\0');
+    float index = -1;
 
-    } else {
+    n1 = do_input_node();
+    n2 = do_input_node();
 
-        printf("Aucun arbre ayant l'identifiant '%s' n'a ete trouve.\n", id);
-        free(id);
-    }
+    if(n1 == NULL || n2 == NULL) return;
+
+    l1 = get_lexicon(n1->tree);
+    l2 = get_lexicon(n2->tree);
+
+    if(l1 != NULL && l2 != NULL) {
+
+        index = jaccard_index(l1, l2);
+
+        if(index != -1) printf("L'index de Jaccard entre ces deux arbres vaut %f.\n", index);
+        else show_internal_error();
+
+    } else show_internal_error();
+
+    if(l1 != NULL) free(l1);
+    if(l2 != NULL) free(l2);
 }
 
 void do_add_occurrence(T_Tree tree) {
@@ -383,4 +389,23 @@ char* do_input_string(char* message, size_t size) {
     if(id == NULL) show_internal_error();
 
     return id;
+}
+
+TreeListNode* do_input_node() {
+
+    char* id = NULL;
+    TreeListNode* node = NULL;
+
+    id = do_input_id();
+
+    if(id != NULL) {
+
+        node = get_treelist_node(GLOBAL_LIST, id);
+
+        if(node == NULL)
+            printf("Erreur : Aucun arbre ayant l'identifiant '%s' n'a ete trouve.\n", id);
+
+    } else show_internal_error();
+
+    return node;
 }
