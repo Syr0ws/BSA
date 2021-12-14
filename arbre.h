@@ -1,3 +1,6 @@
+#ifndef _T_TREE_
+#define _T_TREE_
+
 typedef struct Node {
 
     char* word;
@@ -21,3 +24,5 @@ void display_tree(T_Tree tree, char first);
 int is_tree_perfect(T_Tree tree);
 
 int is_equilibrate(T_Tree tree);
+
+#endif
