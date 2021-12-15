@@ -157,8 +157,6 @@ T_Tree add_occurrence(T_Tree tree, char* word) {
         else if(cmp < 0) current = current->rightChild;
     }
 
-    printf("End while.\n");
-
     // Mot déjà contenu.
     if(cmp == 0) {
         tree->occurrences++;
