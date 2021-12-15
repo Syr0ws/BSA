@@ -46,13 +46,12 @@ int insert_begining_lexicon(Lexicon* lexicon, char* word) {
     return 1;
 }
 
-int destruct_lexicon(Lexicon* lexicon) {
+void destruct_lexicon(Lexicon* lexicon) {
 
     L_Node* node = NULL;
     L_Node* temp = NULL;
 
-    if(lexicon == NULL)
-        return -1;
+    if(lexicon == NULL) return;
 
     node = lexicon->head;
 
@@ -63,7 +62,6 @@ int destruct_lexicon(Lexicon* lexicon) {
         node = temp;
     }
     free(lexicon);
-    return 1;
 }
 
 void display_lexicon(Lexicon* lexicon) {

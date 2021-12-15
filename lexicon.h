@@ -18,7 +18,7 @@ Lexicon* create_lexicon();
 
 int insert_begining_lexicon(Lexicon* lexicon, char* word);
 
-int destruct_lexicon(Lexicon* lexicon);
+void destruct_lexicon(Lexicon* lexicon);
 
 void display_lexicon(Lexicon* lexicon);
 
