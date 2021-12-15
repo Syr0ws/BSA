@@ -27,6 +27,6 @@ TreeListNode* get_treelist_node(TreeList* list, char* id);
 
 void display_treelist_ids(TreeList* list);
 
-int destroy_treelist(TreeList* list);
+void destroy_treelist(TreeList* list);
 
 #endif
