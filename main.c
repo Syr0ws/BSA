@@ -280,9 +280,10 @@ void mdo_jaccard_index() {
     float index = -1;
 
     n1 = do_input_node();
-    n2 = do_input_node();
+    if(n1 == NULL) return;
 
-    if(n1 == NULL || n2 == NULL) return;
+    n2 = do_input_node();
+    if(n2 == NULL) return;
 
     l1 = get_lexicon(n1->tree);
     l2 = get_lexicon(n2->tree);
