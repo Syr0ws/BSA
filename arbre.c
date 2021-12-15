@@ -327,3 +327,17 @@ Lexicon* get_lexicon(T_Tree tree) {
 
     return lexicon;
 }
+
+void destruct_tree(T_Tree tree) {
+
+    if(tree == NULL)
+        return;
+
+    if(tree->leftChild) 
+        destruct_tree(tree->leftChild);
+
+    if(tree->rightChild)
+        destruct_tree(tree->rightChild);
+
+    destruct_node(tree);
+}

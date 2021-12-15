@@ -61,6 +61,8 @@ int remove_from_treelist(TreeList* list, char* id) {
     if(previous == NULL) list->head = node->next;
     else previous->next = node->next;
 
+    destruct_tree(node->tree);
+    
     free(node->id);
     free(node);
 
@@ -96,7 +98,9 @@ int destroy_treelist(TreeList* list) {
     while(node != NULL) {
 
         temp = node->next;
-        // destruct_tree(node->tree);
+
+        destruct_tree(node->tree);
+
         free(node);
         node = temp;
     }

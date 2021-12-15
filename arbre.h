@@ -29,4 +29,6 @@ int is_equilibrate(T_Tree tree);
 
 Lexicon* get_lexicon(T_Tree tree);
 
+void destruct_tree(T_Tree tree);
+
 #endif
