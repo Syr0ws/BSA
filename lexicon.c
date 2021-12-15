@@ -103,14 +103,16 @@ float jaccard_index(Lexicon* lexicon1, Lexicon* lexicon2) {
     unsigned int unionIndex = 0;
     unsigned int intersectIndex = 0;
 
-    if(lexicon1 == NULL && lexicon2 == NULL)
+    // Cas où un des deux lexiques est invalide.
+    if(lexicon1 == NULL || lexicon2 == NULL)
         return -1;
 
-    if(lexicon1 != NULL) 
-        n1 = lexicon1->head;
+    // Cas où les deux lexiques sont les mêmes.
+    if(lexicon1 == lexicon2)
+        return 1;
 
-    if(lexicon2 != NULL)
-        n2 = lexicon2->head;
+    n1 = lexicon1->head;
+    n2 = lexicon2->head;
 
     while(n1 != NULL || n2 != NULL) {
 
