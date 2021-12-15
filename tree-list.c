@@ -111,18 +111,18 @@ void display_treelist_ids(TreeList* list) {
     TreeListNode* node = NULL;
 
     if(list == NULL) {
-        printf("TreeList invalide.\n");
+        printf("List d'arbres invalide.\n");
         return;
     }
 
     if(list->head == NULL) {
-        printf("TreeList vide.\n");
+        printf("Liste d'arbre vide.\n");
         return;
     }
 
     node = list->head;
 
-    printf("Affichage du contenu de la TreeList :\n");
+    printf("Affichage du contenu de la liste d'arbres :\n");
 
     while(node != NULL) {
         printf("- %s\n", node->id);
