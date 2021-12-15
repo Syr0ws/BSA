@@ -116,7 +116,7 @@ void display_treelist_ids(TreeList* list) {
     }
 
     if(list->head == NULL) {
-        printf("Liste d'arbre vide.\n");
+        printf("Liste d'arbres vide.\n");
         return;
     }
 
