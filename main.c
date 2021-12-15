@@ -296,8 +296,8 @@ void mdo_jaccard_index() {
 
     } else show_internal_error();
 
-    if(l1 != NULL) free(l1);
-    if(l2 != NULL) free(l2);
+    if(l1 != NULL) destruct_lexicon(l1);
+    if(l2 != NULL) destruct_lexicon(l2);
 }
 
 void do_add_occurrence(T_Tree tree) {
