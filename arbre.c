@@ -61,8 +61,8 @@ T_Node* find_node(T_Tree tree, char* word) {
 
         cmp = strcmp(current->word, word);
 
-        if(cmp == 1) current = current->leftChild;
-        else if(cmp == -1) current = current->rightChild;
+        if(cmp > 0) current = current->leftChild;
+        else if(cmp < 0) current = current->rightChild;
     }
     return current;
 }

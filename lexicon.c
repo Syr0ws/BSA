@@ -120,12 +120,12 @@ float jaccard_index(Lexicon* lexicon1, Lexicon* lexicon2) {
 
             cmp = strcmp(n1->word, n2->word);
 
-            if(cmp == -1) {
+            if(cmp < 0) {
                 
                 // n1->word < n2->word
                 n1 = n1->next;
 
-            } else if(cmp == 1) {
+            } else if(cmp > 0) {
 
                 // n2->word < n1->word
                 n2 = n2->next;
