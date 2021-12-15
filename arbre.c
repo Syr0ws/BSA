@@ -141,47 +141,52 @@ T_Tree add_occurrence(T_Tree tree, char* word) {
     T_Node* current = tree;
     T_Node* previous = 0;
     char* lowercase = 0;
-    unsigned int found = 0;
-    int cmp = 0;
+    int cmp = -2;
 
-    lowercase = to_lowercase(word);
+    if(word == NULL) 
+        return tree;
 
-    if(lowercase == NULL) return NULL;
-
-    while(current != NULL && !found) {
+    // Recherche de l'emplacement d'insertion.
+    while(current != NULL && cmp != 0) {
 
         previous = current;
 
-        cmp = strcmp(current->word, word);
+        cmp = strcasecmp(current->word, word);
 
-        if(cmp == 0) {
-
-            free(lowercase);
-            current->occurrences++;
-            found = 1;
-
-        } else if(cmp == 1) { 
-        
-            current = current->leftChild;
-
-        } else current = current->rightChild;
+        if(cmp > 0) current = current->leftChild;
+        else if(cmp < 0) current = current->rightChild;
     }
 
-    if(found) return tree;
+    printf("End while.\n");
+
+    // Mot déjà contenu.
+    if(cmp == 0) {
+        tree->occurrences++;
+        return tree;
+    }
+
+    lowercase = to_lowercase(word);
+
+    // Si échec conversion en minuscules.
+    if(lowercase == NULL) 
+        return tree;
 
     node = create_node(lowercase);
 
-    if(node == NULL) { 
-        free(lowercase); 
-        return NULL; 
+    // Si échec création noeud.
+    if(node == NULL) {
+        free(lowercase);
+        return tree;
     }
 
-    if(previous == NULL) return node;
+    // Si aucun père, noeud créé = racine.
+    if(previous == NULL) 
+        return node;
 
-    cmp = strcmp(previous->word, word);
+    cmp = strcmp(previous->word, lowercase);
 
-    if(cmp == 1) previous->leftChild = node;
-    else if(cmp == -1) previous->rightChild = node;
+    if(cmp > 0) previous->leftChild = node;
+    else if(cmp < 0) previous->rightChild = node;
 
     return tree;
 }
