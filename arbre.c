@@ -305,6 +305,9 @@ int is_equilibrate(T_Tree tree) {
 
 void fill_lexicon(T_Tree tree, Lexicon* lexicon) {
 
+    if(tree == NULL)
+        return;
+
     if(tree->rightChild)
         fill_lexicon(tree->rightChild, lexicon);
 
@@ -316,12 +319,7 @@ void fill_lexicon(T_Tree tree, Lexicon* lexicon) {
 
 Lexicon* get_lexicon(T_Tree tree) {
 
-    Lexicon* lexicon = NULL;
-
-    if(tree == NULL)
-        return NULL;
-        
-    lexicon = create_lexicon();
+    Lexicon* lexicon = create_lexicon();
 
     if(lexicon == NULL)
         return NULL;
