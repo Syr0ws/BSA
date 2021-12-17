@@ -286,6 +286,7 @@ void display_tree(T_Tree tree) {
     }
 
     char* c = malloc(sizeof(char));
+    *c = '\0';
 
     deep_display(tree, c);
     free(c);
