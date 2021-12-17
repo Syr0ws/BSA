@@ -123,7 +123,7 @@ void compute_tree_menu_choice(char choice) {
         break;
     case '6':
         printf("Choix %c : Afficher l'arbre courant.\n", choice);
-        display_tree(GLOBAL_NODE->tree, '\0');
+        display_tree(GLOBAL_NODE->tree);
         break;
     case '7':
         printf("Choix %c : Retour au menu principal.\n", choice);
@@ -266,7 +266,7 @@ void mdo_display_tree() {
     TreeListNode* node = NULL;
     node = do_input_node();
 
-    if(node != NULL) display_tree(node->tree, '\0');
+    if(node != NULL) display_tree(node->tree);
 }
 
 void mdo_jaccard_index() {

@@ -262,23 +262,33 @@ T_Tree remove_occurrence(T_Tree tree, char* word, int n) {
     return NULL;
 }
 
-void display_tree(T_Tree tree, char current) {
+void deep_display(T_Tree tree, char* current) {
+
+    if(tree->leftChild) 
+        deep_display(tree->leftChild, current);
+
+    if(*current != tree->word[0]) printf("%c-- ", toupper(tree->word[0]));
+    else printf("    ");
+    
+    printf("%s [%d]\n", tree->word, tree->occurrences);
+
+    *current = tree->word[0];
+
+    if(tree->rightChild)
+        deep_display(tree->rightChild, current);
+}
+
+void display_tree(T_Tree tree) {
 
     if(tree == NULL) {
         printf("Arbre vide.");
         return;
     }
 
-    if(tree->leftChild) 
-        display_tree(tree->leftChild, tree->word[0]);
+    char* c = malloc(sizeof(char));
 
-    if(current != tree->word[0]) printf("%c-- ", toupper(tree->word[0]));
-    else printf("    ");
-    
-    printf("%s [%d]\n", tree->word, tree->occurrences);
-
-    if(tree->rightChild)
-        display_tree(tree->rightChild, tree->word[0]);
+    deep_display(tree, c);
+    free(c);
 }
 
 int is_perfect(T_Tree tree) {

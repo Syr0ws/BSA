@@ -21,7 +21,7 @@ T_Tree add_occurrence(T_Tree tree, char* word);
 
 T_Tree remove_occurrence(T_Tree tree, char* word, int n);
 
-void display_tree(T_Tree tree, char first);
+void display_tree(T_Tree tree);
 
 int is_perfect(T_Tree tree);
 
