@@ -50,23 +50,6 @@ int max(int a, int b) {
 
 // Binary search trees related utils functions
 
-T_Node* find_node(T_Tree tree, char* word) {
-
-    T_Node* current = tree;
-    int cmp = 1;
-
-    if(tree == NULL || word == NULL) return NULL;
-
-    while(current != NULL && cmp != 0) {
-
-        cmp = strcmp(current->word, word);
-
-        if(cmp > 0) current = current->leftChild;
-        else if(cmp < 0) current = current->rightChild;
-    }
-    return current;
-}
-
 T_Node* find_desc_successor(T_Node* node) {
 
     T_Node* current = NULL;
