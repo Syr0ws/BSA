@@ -256,6 +256,9 @@ void display_tree(T_Tree tree) {
 
 int is_perfect(T_Tree tree) {
 
+    if(tree == NULL)
+        return -1;
+
     int height = tree_height(tree);
     int size = tree_size(tree);
 

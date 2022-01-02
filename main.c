@@ -348,6 +348,8 @@ void do_is_perfect(T_Tree tree) {
         printf("L'arbre est parfait.\n");
     else if(result == 0)
         printf("L'arbre n'est pas parfait.\n");
+    else if(result == -1)
+        printf("L'arbre est vide.");
     else 
         show_internal_error();
 }
@@ -360,6 +362,8 @@ void do_is_equilibrate(T_Tree tree) {
         printf("L'arbre est equilibre.\n");
     else if(result == 0)
         printf("L'arbre n'est pas equilibre.\n");
+    else if(result == -1)
+        printf("L'arbre est vide.");
     else 
         show_internal_error();
 }
